@@ -1,6 +1,9 @@
 import React, {useState, useEffect, useRef} from "react";
 import socket from "./socket";
 import '../assets/css/app.css';
+import Carrusel from "./carrusel";
+
+import Img from '../assets/img/sasuke.jpg'
 
 const Publicacion = ({ nombre }) => {
     const [mensaje, setMensaje] = useState("");
@@ -23,24 +26,22 @@ const Publicacion = ({ nombre }) => {
     }
 
     return(
-        <div>
-            <div className="publicacion">
+        <div id="publicacion-main">
+               <img id="img-publicacion" src={Img}/>
+
+            <div className="publicacion form-control">
                 {mensajes.map((e, i) => <div key={i}><div>{e.nombre}</div><div>{e.mensaje}</div></div> )}
             </div>
-
-            <form onSubmit={submit}>
-                <label htmlFor="">Escriba su mensaje</label>
-                <textarea name="" id="" cols="30" rows="10" value={mensaje} onChange={e => setMensaje(e.target.value)}>
-
+            <form className="form-inline" id="Msj" onSubmit={submit}>
+                <div className="form-group mx-sm-3">
+                <textarea className="form-control" placeholder="Escribe tu mensaje" id="" cols="10" rows="2" value={mensaje} onChange={e => setMensaje(e.target.value)}>
                 </textarea>
-                <button>Enviar</button>
+                </div>
+                <button className="btn btn-primary"> Enviar</button>
+
             </form>
-
         </div>
-
-
     )
-
 }
 
 export default Publicacion;
